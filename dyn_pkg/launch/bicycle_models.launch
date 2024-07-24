@@ -1,0 +1,49 @@
+<launch>
+
+  <!-- 将机器人模型加载到gazebo -->
+	<include file="$(find bicycle_model)/launch/gazebo_spawn_bicycle.launch" />	
+
+  <!-- 加载控制参数 -->
+  <!-- Load joint controller configurations from YAML file to parameter server -->
+  <rosparam 
+    file    = "$(find dyn_pkg)/config/bicycle_effortControllers.yaml"
+    command = "load"/>
+
+  <!-- 启动控制器插件 -->
+  <!--start up the controller plug-ins via the controller manager -->
+  <node 
+    name    = "controller_spawner"
+    pkg     = "controller_manager"
+    type    = "spawner"
+    respawn = "false"
+    output  = "screen"
+    ns      = "/bicycle_model"
+    args    = "
+              joint_state_controller 
+
+              rear_joint_effort_controller
+              fork_joint_effort_controller
+              front_joint_effort_controller
+
+              "/>
+  <param name="use_sim_time" value="false"/>
+</launch>
+
+      
+              <!-- 
+              paused:         在暂停状态打开Gazebo (default false)
+              use_sim_time:   节点启动模拟时间,启动主题topic /clock (default true)
+              gui:            启动Gazebo用户接口 (default true)
+              headless:       禁止仿真器调用任何渲染组件。不能在gui:=true (default false)时使用
+              debug:          用gdb (default false)调试模式启动 gzserver (Gazebo Server) 
+              -->
+
+              <!-- 
+              roslaunch gazebo_ros empty_world.launch 
+              paused:=true 
+              use_sim_time:=false 
+              gui:=true 
+              throttled:=false 
+              headless:=false 
+              debug:=true               
+              -->

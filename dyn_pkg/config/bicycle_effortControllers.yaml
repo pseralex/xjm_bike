@@ -1,0 +1,21 @@
+bicycle_model:
+    # Publish all joint states -----------------------------------
+    joint_state_controller:
+        type: joint_state_controller/JointStateController
+        publish_rate: 1000
+
+    # Effort controllers: body_yaw ---------------------------------------
+    rear_joint_effort_controller:
+        type: effort_controllers/JointEffortController
+        joint: rear_joint
+
+    # Effort controllers: Left hand ---------------------------------------
+    fork_joint_effort_controller:
+        type: effort_controllers/JointEffortController
+        joint: fork_joint
+
+    front_joint_effort_controller:
+        type: effort_controllers/JointEffortController
+        joint: front_joint
+
+    

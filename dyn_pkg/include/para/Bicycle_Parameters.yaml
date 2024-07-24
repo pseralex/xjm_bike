@@ -1,0 +1,13 @@
+
+Num: 20001                    
+data_name: "straight_line"
+Robot_Initial_Height:  0.29996175 
+is_plot_data: true
+
+KP: [50, 100, 10, 10, 50, 10]
+KD: [5, 10, 2, 2, 5, 2]
+WEIGHT: [10, 0, 0, 0, 10, 0]
+
+ddq_tau_upper: [100.0, 100.0, 100.0, 100.0, 20.0]    
+ddq_tau_lower: [-100.0, -100.0, -100.0, -100.0, -20.0]   
+w_ampLimit: 1.0e-6
